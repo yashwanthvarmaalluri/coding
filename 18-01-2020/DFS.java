@@ -5,7 +5,7 @@ class Solution
     public ArrayList<Integer> dfsOfGraph(int V, ArrayList<ArrayList<Integer>> adj)
     {
          ans=new ArrayList<Integer>();
-         visited=new boolean[V+1];
+         visited=new boolean[V];
          dfs(adj,0);
          return ans;
     }
