@@ -1,3 +1,4 @@
+#Method1 DFS
 class Solution{
     public boolean[] visited;
     public ArrayList<ArrayList<Integer>> list;
@@ -31,3 +32,42 @@ class Solution{
     }
     
 }
+
+# method 2 union find rank 
+
+class Solution:
+    def find(self,u,parent):
+        if(parent[u]==u):
+            return u
+        val=self.find(parent[u],parent)
+        parent[u]=val
+        return val
+    def union(self,u,v,parent,rank):
+        parentu=self.find(u,parent)
+        parentv=self.find(v,parent)
+        if(rank[parentu]>rank[parentv]):
+            parent[parentv]=parentu
+        elif(rank[parentu]<rank[parentv]):          
+            parent[parentu]=parentv
+        else:
+            rank[parentu]+=1
+            parent[parentv]=parentu
+    def solve(self, V,E,Values,Edges):
+        parent=[0]*V
+        rank=[0]*V
+        for i in range(V):
+            parent[i]=i
+        for i in range(E):
+            self.union(Edges[i][0]-1,Edges[i][1]-1,parent,rank)
+        root_sum={}
+        for i in range(V):
+            x=self.find(i,parent)
+            if x in root_sum:
+                root_sum[x]+=Values[i]
+            else:
+                root_sum[x]=Values[i]
+        return max(root_sum.values())
+        
+        
+
+
