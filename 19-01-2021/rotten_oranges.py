@@ -3,13 +3,10 @@ class Solution:
         queue=[]
         rowlen=len(grid)
         collen=len(grid[0])
-        c=0
         for i in range(rowlen):
             for j in range(collen):
                 if(grid[i][j]==2):
                     queue.append([i,j])
-                elif(grid[i][j]==1):
-                    c+=1
         rowoffset=[1,0,-1,0]
         coloffset=[0,1,0,-1]
         time=0
